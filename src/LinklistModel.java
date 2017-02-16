@@ -8,29 +8,35 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
+
+
 public class LinklistModel {
 
 
+    /**
+     *
+     * @return Läser in texten som är skriven i text rutan
+     */
 
-
-    public String setURL() {
+    public String returnURL() {
         return LinklistView.getURL();
     }
-
-    private String url = LinklistView.getURL();
 
     int count = 0;
 
 
-
     /**
-     * Söker igenom hemsidan
-     * @throws Exception
+     * Den läser in en URL som den sedan läser igenom varje rad och söker efter "/a"
+     * för att få reda på hur många länkar som finns på sidan (I alla fall man kan klicka på)
+     *
+     *
+     * @throws Exception Kastar bort problem som handlar om att det inte finns någon URL
      */
     public void urlReader() throws Exception{
 
 
-        URL urlwww = new URL(url);
+        URL urlwww = new URL(returnURL());
         BufferedReader in = new BufferedReader(new InputStreamReader(urlwww.openStream()));
 
         String inputLine;
@@ -54,7 +60,13 @@ public class LinklistModel {
 
         in.close();
 
+
     }
+
+    /**
+     *
+     * @return returnar nummret av "/a" taggar
+     */
     public int getCount() {
         return count;
     }
